@@ -98,7 +98,7 @@ const getMoarPokemons = ((limit) => {
 	let offset = 0;
 	const swooosh = function(limit) {
 		fetching = true;
-		fetch('http://pokeapi.co/api/v1/pokemon/?limit=' + limit + '&offset=' + offset*12)
+		fetch('https://pokeapi.co/api/v1/pokemon/?limit=' + limit + '&offset=' + offset*12)
 			.then(response => response.json())
 			.then(json => {
 				if (json.hasOwnProperty('objects')) {
@@ -157,7 +157,7 @@ document.addEventListener('click', function(event) {
 			const pokemon = cache.find(p => p.pkdx_id == element.getAttribute('data-pokemonid'));
 			if (pokemon) {
 				Promise.all([
-					...pokemon.descriptions.slice(0,7).map(d => fetch('http://pokeapi.co' + d.resource_uri))
+					...pokemon.descriptions.slice(0,7).map(d => fetch('https://pokeapi.co' + d.resource_uri))
 				])
 				.then(fetches => fetches.map(
 					f => f.json()
